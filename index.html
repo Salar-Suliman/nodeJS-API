@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+    crossorigin="anonymous">
+ 
+</head>
+<body>
+  <div class="container">
+  <h1 class="text-center"> Events</h1>
+  <div id="result">
+    </div>
+    </div>    
+    <script type="text/javascript">
+       /*  let div = document.createElement("div")
+          fetch("http://localhost:4000/events")
+            .then(resp => resp.json())
+            .then(resp => {
+              resp.map(e => {
+                let html = document.createElement("li")
+                html.innerHTML = e._id["$oid"]
+                div.appendChild(html)
+              })
+              document.getElementById('result').innerHTML = div.innerHTML;
+            }) */
+     
+      fetch("http://localhost:3000/events")
+        .then(resp => resp.json())
+        .then(resp => {
+          str =''
+         
+          resp.map((e , index)=> {
+            str += 
+             ` 
+            <table class="table table-dark">
+             <tr  >
+              
+         <td class="text-center"> <span class="text-danger">Event${index + 1} : </span> <br> 
+                 <p class="lead "> ${e._id["$oid"]} </p></td>
+               </tr> 
+               </table>
+            `
+          })
+          document.getElementById('result').innerHTML = str;
+        })
+    </script>
+</body>
+</html>
